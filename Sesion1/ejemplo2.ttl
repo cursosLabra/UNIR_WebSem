@@ -1,0 +1,13 @@
+@prefix  uni:   <http://uniovi.es/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+uni:juan a uni:Profesor ;
+         foaf:name "Juan Manuel" ;
+         foaf:knows uni:ana, uni:luis , _:x ;
+         foaf:age 23 .
+
+_:x foaf:name "Jose Luis" ;
+    foaf:knows uni:ana .
+    
+

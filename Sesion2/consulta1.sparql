@@ -1,0 +1,5 @@
+prefix : <http://www.ejemplo.org/curso#>
+
+select * where { 
+ ?x a :Orgulloso .
+}

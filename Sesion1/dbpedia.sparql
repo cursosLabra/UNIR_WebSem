@@ -1,0 +1,10 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?nombre ?nacim WHERE { 
+  ?x dbo:birthPlace dbr:Oviedo .
+  ?x dbo:birthYear ?nacim .
+  ?x dbp:name ?nombre .
+}

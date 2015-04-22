@@ -1,0 +1,256 @@
+@prefix : <http://www.ejemplo.org/curso#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.ejemplo.org/curso> .
+
+<http://www.ejemplo.org/curso> rdf:type owl:Ontology ;
+                               
+                               rdfs:comment "Ejemplo de ontología sobre un curso"@es .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.ejemplo.org/curso#daClaseDe
+
+:daClaseDe rdf:type owl:ObjectProperty ;
+           
+           rdfs:range :Asignatura ;
+           
+           rdfs:domain :Profesor .
+
+
+
+###  http://www.ejemplo.org/curso#estaMatriculadoEn
+
+:estaMatriculadoEn rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:domain :Alumno ;
+                   
+                   rdfs:range :Asignatura .
+
+
+
+###  http://www.ejemplo.org/curso#tieneHijo
+
+:tieneHijo rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://www.ejemplo.org/curso#edad
+
+:edad rdf:type owl:DatatypeProperty ;
+      
+      rdfs:domain :Persona ;
+      
+      rdfs:range xsd:int .
+
+
+
+###  http://www.ejemplo.org/curso#nombre
+
+:nombre rdf:type owl:DatatypeProperty ;
+        
+        rdfs:domain :Persona ;
+        
+        rdfs:range xsd:string .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.ejemplo.org/curso#Alumno
+
+:Alumno rdf:type owl:Class ;
+        
+        rdfs:subClassOf :Persona .
+
+
+
+###  http://www.ejemplo.org/curso#Asignatura
+
+:Asignatura rdf:type owl:Class .
+
+
+
+###  http://www.ejemplo.org/curso#Orgulloso
+
+:Orgulloso rdf:type owl:Class ;
+           
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:intersectionOf ( :Persona
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :tieneHijo ;
+                                                        owl:someValuesFrom :RecienNacido
+                                                      ]
+                                                    )
+                               ] .
+
+
+
+###  http://www.ejemplo.org/curso#Padre
+
+:Padre rdf:type owl:Class ;
+       
+       owl:equivalentClass [ rdf:type owl:Class ;
+                             owl:intersectionOf ( :Persona
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :tieneHijo ;
+                                                    owl:someValuesFrom :Persona
+                                                  ]
+                                                )
+                           ] ;
+       
+       owl:disjointWith :RecienNacido .
+
+
+
+###  http://www.ejemplo.org/curso#Persona
+
+:Persona rdf:type owl:Class .
+
+
+
+###  http://www.ejemplo.org/curso#Profesor
+
+:Profesor rdf:type owl:Class ;
+          
+          rdfs:subClassOf :Persona .
+
+
+
+###  http://www.ejemplo.org/curso#RecienNacido
+
+:RecienNacido rdf:type owl:Class ;
+              
+              rdfs:subClassOf :Persona .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.ejemplo.org/curso#algebra
+
+:algebra rdf:type :Asignatura ,
+                  owl:NamedIndividual .
+
+
+
+###  http://www.ejemplo.org/curso#dani
+
+:dani rdf:type :Profesor ,
+               owl:NamedIndividual ;
+      
+      :edad "30"^^xsd:int ;
+      
+      :daClaseDe :algebra .
+
+
+
+###  http://www.ejemplo.org/curso#federico
+
+:federico rdf:type :Persona ,
+                   owl:NamedIndividual .
+
+
+
+###  http://www.ejemplo.org/curso#jose
+
+:jose rdf:type :Profesor ,
+               owl:NamedIndividual ;
+      
+      :edad "38"^^xsd:int ;
+      
+      :nombre "Jose Luis"^^xsd:string ;
+      
+      :daClaseDe :algebra ;
+      
+      :tieneHijo :sergio .
+
+
+
+###  http://www.ejemplo.org/curso#juan
+
+:juan rdf:type :Persona ,
+               owl:NamedIndividual ;
+      
+      :estaMatriculadoEn :logica .
+
+
+
+###  http://www.ejemplo.org/curso#kiko
+
+:kiko rdf:type owl:NamedIndividual .
+
+
+
+###  http://www.ejemplo.org/curso#logica
+
+:logica rdf:type :Asignatura ,
+                 owl:NamedIndividual .
+
+
+
+###  http://www.ejemplo.org/curso#miguel
+
+:miguel rdf:type :Alumno ,
+                 owl:NamedIndividual ;
+        
+        :estaMatriculadoEn :algebra .
+
+
+
+###  http://www.ejemplo.org/curso#programacion
+
+:programacion rdf:type :Asignatura ,
+                       owl:NamedIndividual .
+
+
+
+###  http://www.ejemplo.org/curso#ruben
+
+:ruben rdf:type :Alumno ,
+                owl:NamedIndividual .
+
+
+
+###  http://www.ejemplo.org/curso#sergio
+
+:sergio rdf:type :RecienNacido ,
+                 owl:NamedIndividual .
+
+
+
+
+###  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net
+
